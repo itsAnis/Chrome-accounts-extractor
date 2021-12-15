@@ -101,7 +101,6 @@ def main():
 		cursor.close()
 		conn.close()
 		try:
-			pass
 			os.remove("db")
 		except Exception as e:
 			print(e)
